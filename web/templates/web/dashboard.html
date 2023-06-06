@@ -1,0 +1,147 @@
+{% extends 'web_base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+
+
+<div class="pt-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm" style="max-width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{properties.count}}</h5>
+                                <p class="card-text">Properties</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm" style="max-width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{users.count}}</h5>
+                                <p class="card-text">Users</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm" style="max-width: 18rem; background-color: white;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{customers.count}}</h5>
+                                <p class="card-text">Customers</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="pt-3 pb-3">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h6 class="fw-bold mb-0">New Properties</h6>
+                                </div>
+                                <div class="col text-end">
+                                    <a href="" class="btn btn-sm btn-primary">View all</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                    <tr>
+                                        <th class="border-bottom" scope="col">Poperty Name</th>
+                                        <th class="border-bottom" scope="col">Price</th>
+                                        <th class="border-bottom" scope="col">Category</th>
+                                        <th class="border-bottom" scope="col">Location</th>
+                                        <th class="border-bottom" scope="col">Dalali</th>
+                                        
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        {%  if properties %}
+                                            {% for property in get_few %}
+                                            <tr>
+                                                <th class="text-gray-900" scope="row">
+                                                    {{property.name}}
+                                                </th>
+                                                <td class=" text-gray-500">
+                                                    <div class="d-flex">
+                                                        <svg class="icon icon-xs text-danger me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                                                        {{property.price|intcomma}}
+                                                    </div>
+                                                </td>
+                                                <td class=" text-gray-500">
+                                                    {{property.category.name}}
+                                                </td>
+                                                <td class=" text-gray-500">
+                                                    {{property.ward.name}}
+                                                </td>
+                                                <td class=" text-gray-500">
+                                                    {{property.user.username}}
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        {% else %}
+                                            <div>
+                                                <h3 class="text-center">No Properties</h3>
+                                            </div>
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <p>All users</p>
+                                <h6>{{total_users}}</h6>
+                            </div>
+                            <div class="col text-end">
+                                <a href="" >bars</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {% if few_users %}
+                            {% for user in few_users %}
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="col-auto">
+                                            <!-- Avatar -->
+                                            <img class="avatar rounded-circle" alt="Image placeholder" src="/static/assets/images/profile.png">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        {% if user.get_full_name %}
+                                            <p class="align-self-start text-bold">
+                                                {{user.get_full_name}}
+                                                <br>
+                                            </p>
+                                            {% else %}
+                                                <p class="text-bold">{{user.username}}</p>
+                                            {% endif %}
+                                        <p class="" style="font-size: 10px; font-style: italic;">last login: {{user.last_login|naturaltime}}</p>
+                                        
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p>no data</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+

@@ -1,0 +1,30 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="background-color: #0B2239;">
+  <div class="container">
+    <div class="d-flex justify-content-between w-100 align-items-center" id="navbarSupportedContent">
+      <a class="navbar-brand align-items-center" href="">
+        <img class="" alt="Image placeholder" src="/static/logos/d360.png" >
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Navbar links -->
+      <div class="" id="navbarScroll">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item"><a class="nav-link " href="" style="font-size: 14px; color: white;">Home</a> </li>
+          <li class="nav-item"><a class="nav-link " href="#about" style="font-size: 14px; color: white;">About</a> </li>
+          <li class="nav-item"><a class="nav-link " href="#statistic" style="font-size: 14px; color: white;">Products</a> </li>
+          <li class="nav-item"><a class="nav-link " href="#contact" style="font-size: 14px; color: white;">Contact</a> </li>
+          <li class="nav-item">
+            <a href="{% url 'user_login' %}">
+              <button type="button" class="btn btn-primary btn-sm" style="background-color: #034274;">Sign In</button>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+

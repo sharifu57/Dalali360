@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+
+{% block content %}
+{% include 'common/navigation.html' %}
+<div class="body">
+    <div id="home">
+        {% include 'pages/home.html' %}
+    </div>
+    <div id="download">
+        {% include 'pages/download.html' %}
+    </div>
+    <div id="how">
+        {% include 'pages/how_it_works.html' %}
+    </div>
+    <div id="about">
+        {% include 'pages/about.html' %}
+    </div>
+    <div id="statistic">
+        {% include 'pages/statistic.html' %}
+    </div>
+    <div id="contact">
+        {% include 'pages/contact.html' %}
+    </div>
+    <div>
+        {% include 'common/footer.html' %}
+    </div>
+</div> 
+{% endblock content %}
+
+
+
+

@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  backend:
+    restart: "always"
+    build: .
+    environment:
+      IP: 127.0.0.1
+    volumes:
+      - .:/dalali
+    command: bash -c "python manage.py runserver 0.0.0.0:7000"
+    container_name: dalali
+    image: dalali_backend
+    ports:
+      - "7000:7000"
+    networks:
+      - webnet
+networks:
+  webnet:

@@ -1,0 +1,110 @@
+{% extends 'web_base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block content %}
+    <div class="uk-padding">
+        <div class="uk-card uk-card-default uk-card-body">
+            <div class="uk-card-header">
+                <h6 class="uk-text-bold">{{title}}</h6>
+            </div>
+            <div class="uk-card-body">
+                <div class="">
+                    <!-- Search form -->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <form action="" method="get" class="navbar-search form-inline" id="navbar-search-main">
+                                <div class="input-group input-group-merge search-bar">
+                                    <span class="input-group-text" id="topbar-addon">
+                                      <svg class="icon icon-xs" x-description="Heroicon name: solid/search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                                      </svg>
+                                    </span>
+                                    <input type="search" class="form-control" id="search_parameter" value="{{ request.GET.search_parameter }}"
+                                    name="search_parameter"  autocomplete="off" placeholder="Search here" 
+                                    aria-label="Search" aria-describedby="topbar-addon" />
+                                </div>
+                              </form>
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                        <div class="col text-end">
+                            <a href="javascript:" data-href="{% url 'create_new_property' %}"  type="button" class="btn btn-primary add-new-propery-link">
+                                <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                Add New
+                            </a>
+                        </div>
+                    </div>
+                    <!-- / Search form -->
+                </div>
+
+                <div class="pt-5">
+                    <table class="uk-table uk-table-hover uk-table-divider">
+                        <thead class="" style="background-color: black;">
+                            <tr>
+                                <th>S/N</th>
+                                <th>NAME</th>
+                                <th>PRICE</th>
+                                <th>CONTRACT</th>
+                                <th>category</th>
+                                <th>Location</th>
+                                <th>status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if properties %}
+                                {% for property in properties %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{property.name}}</td>
+                                        <td>{{property.price | intcomma}}</td>
+                                        <td>{{property.month_per_contract}} Months</td>
+                                        <td>{{property.category.name}}</td>
+                                        <td>{{property.ward.name}}</td>
+                                        <td>
+                                            {% if property.status == 4 %}
+                                                <span class="badge bg-info text-dark">Available</span>
+                                            {% else %}
+                                                <span class="badge bg-success text-dark">New</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <div class="btn-group dropstart">
+                                                <a class=" btn-default dropdown-toggle text-center pl-3"   data-bs-toggle="dropdown" href="#" aria-expanded="false" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    ...
+                                                </a>
+            
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href=""><span style="margin-right: 6px;"><i class="fa-solid fa-eye"></i></span> View Details</a></li>
+                                                    <li><a class="dropdown-item update-property-link" href="javascript:;" data-href=""><span style="margin-right: 6px;"><i class="fa-solid fa-pen-to-square"></i></span> Edit Details</a></li>
+                                                    <li style="color: red;"><a href="javascript:;" data-href=""
+                                                        class="dropdown-item remove-property-link" style="color: red;"><span style="margin-right: 6px;">
+                                                        <i class="fa-solid fa-trash-can"></i></span> Remove</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'assets/js/helper_functions.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/property/property.js' %}"></script>
+{% endblock scripts %}

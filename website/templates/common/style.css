@@ -1,0 +1,27 @@
+/* Custom CSS Animation */
+@keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Bootstrap Classes */
+  .download-btn {
+    position: relative;
+  }
+  
+  .icon {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: -20px; /* Adjust this value to align the icon properly */
+    width: 16px;
+    height: 16px;
+    background-image: url('your-icon-url.png'); /* Replace with your icon URL */
+    background-size: cover;
+    animation: rotate 1s infinite linear; /* Add the custom animation */
+  }
+  

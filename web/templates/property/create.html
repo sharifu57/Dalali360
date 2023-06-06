@@ -1,0 +1,18 @@
+
+
+<form class="new-prorperty-form uk-form-stacked" action="{% url '' %}" method="post" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+    {% load widget_tweaks %}
+    <p>form here</p>
+    <div class="form-group">
+        <label for="">
+            Category
+            {% if form.name.field.required %}
+                <span class="text-danger">*</span>
+            {% endif %}
+        </label>
+        {% render_field form.name class="form-control" %}
+        <span class="text-danger">{{ form.name.errors }}</span>
+    </div>
+
+</form>

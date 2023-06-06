@@ -1,0 +1,51 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', 
+        views.UserLoginView.as_view(), 
+        name='user_login'
+    ), 
+    path('home/', 
+        views.HomeView.as_view(), 
+        name='home'
+    ),
+    path("properties/", 
+        views.PropertyIndexView.as_view(), 
+        name='properties'
+    ),
+    path(
+        "logout/",
+        views.LogoutView.as_view(),
+        name="logout"
+    ),
+    path("create_new_property/", 
+        views.CreateNewPropertyView.as_view(),
+        name="create_new_property"
+    ),
+    path(
+        "dashboard/", 
+        views.DashboardView.as_view(),
+        name="dashboard"
+    ),
+    path(
+        "view_all_properties/",
+        views.PropertyView.as_view(),
+        name="view_all_properties"
+    ),
+    path(
+        "view_one_property/<int:property_id>/",
+        views.ViewProperty.as_view(),
+        name="view_one_property"
+    ),
+    path(
+        "syste_users/",
+        views.SystemUsers.as_view(),
+        name="syste_users"
+    ),
+    path(
+        "block_user/",
+        views.BlockUser.as_view(),
+        name="block_user"
+    )
+]
